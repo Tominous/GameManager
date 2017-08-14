@@ -1,7 +1,10 @@
 package me.rtn.gamemanager.game;
 
+import me.rtn.gamemanager.data.DataHandler;
+import me.rtn.gamemanager.data.RollbackHandler;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +47,15 @@ public class Game {
     private Map<GamePlayer, Location> tpSpawnPoinbts = new HashMap<>();
     private boolean movementFrozen = false;
 
+    public Game(String gameName){
+        FileConfiguration fileConfiguration = DataHandler.getDataHandler().getFileConfiguration();
+
+        this.displayName = fileConfiguration.getString("games." + gameName + ".displayName");
+        this.maxPlayers = fileConfiguration.getInt("games." + gameName + ".maxPlayers");
+        this.minPlayers = fileConfiguration.getInt("games." + gameName + ".minPlayers");
+
+        RollbackHandler.getRollbackHandler().rollBack(fileConfiguration.getString("games." + gameName + ".worldName"));
+    }
 
     public String getDisplayName() {
         return displayName;

@@ -28,7 +28,7 @@ public class DataHandler {
 
     private File gameInfoFile;
     private FileConfiguration fileConfiguration;
-    private FileConfiguration getFileConfiguration() { return fileConfiguration; }
+    public FileConfiguration getFileConfiguration() { return fileConfiguration; }
 
     private static DataHandler dataHandler = new DataHandler();
 
@@ -46,6 +46,7 @@ public class DataHandler {
             }
         }
     }
+
     public void saveGameInfoFile(){
         dataHandler = this;
         try{
