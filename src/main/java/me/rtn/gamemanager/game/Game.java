@@ -83,8 +83,20 @@ public class Game {
         }
     }
 
+    public void setSpectatorSettings(Player player){
+        GamePlayer gamePlayer = getGamePlayer(player);
+
+        player.setMaxHealth(20);//deprecated but fuck it
+        player.setHealth(player.getMaxHealth());//still deprecated but fuck it
+        player.setGameMode(GameMode.SPECTATOR);
+
+        if(gamePlayer != null){
+            //todo switch to spectator
+        }
+    }
+
+
     public GamePlayer getGamePlayer(Player player){
-        int id = 0;
         for(GamePlayer gamePlayer : getPlayers()){
             if(gamePlayer.getPlayer() == player){
                 return gamePlayer;
