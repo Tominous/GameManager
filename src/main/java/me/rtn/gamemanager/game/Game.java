@@ -110,6 +110,20 @@ public class Game {
         }
     }
 
+    public boolean joinGame(GamePlayer gamePlayer){
+        if(isState(GameState.LOBBY) || isState(GameState.STARTING)){
+            if(getPlayers().size() == getMaxPlayers()){
+                gamePlayer.sendMessage(ChatColor.RED + "Game is full!");
+                return false;
+            }
+            getPlayers().add(gamePlayer);
+            gamePlayer.teleport(isState(GameState.LOBBY) ?  lobbyPoint : null);
+            gamePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&b" + gamePlayer.getPlayer().getName() + " &b has joined!"
+            + "&4" + getPlayers().size() + "/" + getMaxPlayers()));
+        }
+        return true;
+    }
 
     public GamePlayer getGamePlayer(Player player){
         for(GamePlayer gamePlayer : getPlayers()){
@@ -122,6 +136,10 @@ public class Game {
                 return gamePlayer;
         }
         return null;
+    }
+
+    public boolean isState(GameState state){
+        return getGameState() == state;
     }
 
     public String getDisplayName() {
