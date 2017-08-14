@@ -132,10 +132,10 @@ public class Game {
                 setGameState(GameState.STARTING);
                 startCountdown();
             }
-            //todo setgame
+            Main.getInstance().setGame(gamePlayer.getPlayer(), this);
         } else {
             setSpectatorSettings(gamePlayer.getPlayer());
-            //todo set game
+            Main.getInstance().setGame(gamePlayer.getPlayer(), this);
         }
         return true;
     }

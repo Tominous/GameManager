@@ -1,6 +1,7 @@
 package me.rtn.gamemanager;
 
 import me.rtn.gamemanager.data.DataHandler;
+import me.rtn.gamemanager.data.RollbackHandler;
 import me.rtn.gamemanager.game.Game;
 import me.rtn.gamemanager.game.GamePlayer;
 import org.bukkit.Bukkit;
@@ -69,6 +70,20 @@ public final class Main extends JavaPlugin {
             }
             entry.getKey().getInventory().clear();
             entry.getKey().getInventory().setArmorContents(new ItemStack[0]);
+        }
+        for(Game game : getGames()){
+            for(Player player : game.getWorld().getPlayers()){
+                try{
+                    player.teleport(getLobbyPoint());
+                } catch(Exception e){
+                    getInstance().getLogger().info("Error: " + e);
+                }
+            }
+            try {
+                RollbackHandler.getRollbackHandler().rollback(game.getWorld());
+            } catch(Exception e){
+                getInstance().getLogger().info("Error: " + e);
+            }
         }
     }
 
