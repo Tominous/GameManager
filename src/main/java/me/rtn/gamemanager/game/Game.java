@@ -138,6 +138,10 @@ public class Game {
         return null;
     }
 
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
     public boolean isState(GameState state){
         return getGameState() == state;
     }
