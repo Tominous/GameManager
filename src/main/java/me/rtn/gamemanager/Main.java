@@ -1,5 +1,6 @@
 package me.rtn.gamemanager;
 
+import me.rtn.gamemanager.commands.CommandManager;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
 import me.rtn.gamemanager.game.Game;
@@ -38,7 +39,7 @@ public final class Main extends JavaPlugin {
         getConfig().options().copyHeader(true);
         saveDefaultConfig();
 
-        //todo commands
+        getCommand("games").setExecutor(new CommandManager());
 
         this.isSingleServerMode = getConfig().getBoolean("single-server-mode");
 

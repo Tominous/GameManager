@@ -1,3 +1,5 @@
 name: GameManager
 version: ${project.version}
 main: me.rtn.gamemanager.Main
+games:
+    aliases: [h, hs]
