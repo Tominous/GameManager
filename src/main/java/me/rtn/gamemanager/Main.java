@@ -1,6 +1,7 @@
 package me.rtn.gamemanager;
 
 import me.rtn.gamemanager.game.Game;
+import me.rtn.gamemanager.game.GamePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,7 +22,7 @@ public final class Main extends JavaPlugin {
     private int gamesLimit = 0;
     private boolean isSingleServerMode = false;
 
-    private Map<Player, Game> playerGameMap = new HashMap<>();
+    private Map<Player, GamePlayer> playerGameMap = new HashMap<>();
 
     @Override
     public void onEnable() {
