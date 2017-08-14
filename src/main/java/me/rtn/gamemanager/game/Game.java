@@ -1,9 +1,13 @@
 package me.rtn.gamemanager.game;
 
+import com.sun.xml.internal.messaging.saaj.soap.impl.HeaderImpl;
+import me.rtn.gamemanager.Main;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.HashMap;
@@ -55,6 +59,18 @@ public class Game {
         this.minPlayers = fileConfiguration.getInt("games." + gameName + ".minPlayers");
 
         RollbackHandler.getRollbackHandler().rollBack(fileConfiguration.getString("games." + gameName + ".worldName"));
+
+        this.world = Bukkit.createWorld(new WorldCreator(fileConfiguration.getString("games." + gameName + ".worldName")));
+
+        try {
+            String[] values = fileConfiguration.getString("games." + gameName + ".lobbyPoint").split(",");
+            double x = Double.parseDouble(values[0].split(":")[1]);
+            double y = Double.parseDouble(values[1].split(":")[1]);
+            double z = Double.parseDouble(values[2].split(":")[1]);
+            lobbyPoint = new Location(world, x, y, z,);
+        }catch(Exception e){
+            Main.getInstance().getLogger().info("Error: " + e);
+        }
     }
 
     public String getDisplayName() {
