@@ -4,11 +4,9 @@ import com.sun.xml.internal.messaging.saaj.soap.impl.HeaderImpl;
 import me.rtn.gamemanager.Main;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -70,7 +68,7 @@ public class Game {
         }
         this.spawnPoints = new ArrayList<>();
 
-        for(String point ; fileConfiguration.getStringList("games." + gameName + ".spawnPoints")){
+        for(String point : fileConfiguration.getStringList("games." + gameName + ".spawnPoints")){
 
             try {
                 String[] values = fileConfiguration.getString("games." + gameName + ".lobbyPoint").split(",");
@@ -83,6 +81,20 @@ public class Game {
                 Main.getInstance().getLogger().info("Error: " + e);
             }
         }
+    }
+
+    public GamePlayer getGamePlayer(Player player){
+        int id = 0;
+        for(GamePlayer gamePlayer : getPlayers()){
+            if(gamePlayer.getPlayer() == player){
+                return gamePlayer;
+            }
+        }
+        for(GamePlayer gamePlayer : getSpectators()){
+            if(gamePlayer.getPlayer() == player)
+                return gamePlayer;
+        }
+        return null;
     }
 
     public String getDisplayName() {
