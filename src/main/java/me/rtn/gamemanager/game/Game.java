@@ -95,6 +95,21 @@ public class Game {
         }
     }
 
+    public void assignSpawnPoints(){
+        int id = 0;
+        for(GamePlayer gamePlayer : getPlayers()){
+            try{
+                gamePlayerToSpawnPoint.put(gamePlayer, spawnPoints.get(id));
+                gamePlayer.teleport(spawnPoints.get(id));
+                id += 1;
+                gamePlayer.getPlayer().setGameMode(GameMode.SURVIVAL);
+                gamePlayer.getPlayer().setHealth(gamePlayer.getPlayer().getMaxHealth());//deprecated but fuck it
+            }catch(IndexOutOfBoundsException e){
+                Main.getInstance().getServer().getLogger().info("Error: " + e);
+            }
+        }
+    }
+
 
     public GamePlayer getGamePlayer(Player player){
         for(GamePlayer gamePlayer : getPlayers()){
