@@ -10,10 +10,7 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static me.rtn.gamemanager.game.Game.GameState.LOBBY;
 
@@ -67,9 +64,24 @@ public class Game {
             double x = Double.parseDouble(values[0].split(":")[1]);
             double y = Double.parseDouble(values[1].split(":")[1]);
             double z = Double.parseDouble(values[2].split(":")[1]);
-            lobbyPoint = new Location(world, x, y, z,);
+            lobbyPoint = new Location(world, x, y, z);
         }catch(Exception e){
             Main.getInstance().getLogger().info("Error: " + e);
+        }
+        this.spawnPoints = new ArrayList<>();
+
+        for(String point ; fileConfiguration.getStringList("games." + gameName + ".spawnPoints")){
+
+            try {
+                String[] values = fileConfiguration.getString("games." + gameName + ".lobbyPoint").split(",");
+                double x = Double.parseDouble(values[0].split(":")[1]);
+                double y = Double.parseDouble(values[1].split(":")[1]);
+                double z = Double.parseDouble(values[2].split(":")[1]);
+                Location location = new Location(world, x, y, z);
+                spawnPoints.add(location);
+            }catch(Exception e) {
+                Main.getInstance().getLogger().info("Error: " + e);
+            }
         }
     }
 
