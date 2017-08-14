@@ -51,7 +51,10 @@ public final class Main extends JavaPlugin {
         if (DataHandler.getDataHandler().getFileConfiguration().getConfigurationSection("games") != null) {
             for (String gameName : DataHandler.getDataHandler().getFileConfiguration().getConfigurationSection("games").getKeys(false)) {
                 Game game = new Game(gameName);
-                //todo register game
+                boolean status = this.registerGame(game);
+                if(!status){
+                    getLogger().info("[!] Can't load game: " + gameName + "[!]");
+                }
             }
         } else {
             getLogger().warning("[!] No games are currently running! [!]");
