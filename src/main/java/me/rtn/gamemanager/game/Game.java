@@ -1,5 +1,15 @@
 package me.rtn.gamemanager.game;
 
+import org.bukkit.Location;
+import org.bukkit.World;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static me.rtn.gamemanager.game.Game.GameState.LOBBY;
+
 /*
  * GameManager 
  * Created by George at 1:50 AM on 14-Aug-17  
@@ -19,4 +29,71 @@ package me.rtn.gamemanager.game;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class Game {
+
+    private String displayName;
+    private int maxPlayers;
+    private int minPlayers;
+    private World world;
+    private List<Location> spawnPoints;
+    private Location lobbyPoint;
+    //active game information
+    private Set<GamePlayer> players;
+    private Set<GamePlayer> spectators;
+    private Map<GamePlayer, Location> gamePlayerToSpawnPoint = new HashMap<>();
+    private GameState gameState = LOBBY;
+    private Map<GamePlayer, Location> tpSpawnPoinbts = new HashMap<>();
+    private boolean movementFrozen = false;
+
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public int getMinPlayers() {
+        return minPlayers;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public List<Location> getSpawnPoints() {
+        return spawnPoints;
+    }
+
+    public Location getLobbyPoint() {
+        return lobbyPoint;
+    }
+
+    public Set<GamePlayer> getPlayers() {
+        return players;
+    }
+
+    public Set<GamePlayer> getSpectators() {
+        return spectators;
+    }
+
+    public Map<GamePlayer, Location> getGamePlayerToSpawnPoint() {
+        return gamePlayerToSpawnPoint;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public Map<GamePlayer, Location> getTpSpawnPoinbts() {
+        return tpSpawnPoinbts;
+    }
+
+    public boolean isMovementFrozen() {
+        return movementFrozen;
+    }
+
+    public enum GameState {
+        LOBBY, STARTING, PREP, ACTIVE, ENDING;
+    }
 }
