@@ -4,6 +4,7 @@ import com.sun.xml.internal.messaging.saaj.soap.impl.HeaderImpl;
 import me.rtn.gamemanager.Main;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
+import me.rtn.gamemanager.tasks.GameCountdownTask;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -121,6 +122,20 @@ public class Game {
             gamePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&',
                     "&b" + gamePlayer.getPlayer().getName() + " &b has joined!"
             + "&4" + getPlayers().size() + "/" + getMaxPlayers()));
+
+            gamePlayer.getPlayer().getInventory().clear();
+            gamePlayer.getPlayer().getInventory().setArmorContents(null);
+            gamePlayer.getPlayer().setGameMode(GameMode.ADVENTURE);
+            gamePlayer.getPlayer().setHealth(gamePlayer.getPlayer().getMaxHealth());//why the fuck is this deprecated?!
+
+            if(getPlayers().size() == getMinPlayers() && !isState(GameState.STARTING)){
+                setGameState(GameState.STARTING);
+                startCountdown();
+            }
+            //todo setgame
+        } else {
+            setSpectatorSettings(gamePlayer.getPlayer());
+            //todo set game
         }
         return true;
     }
@@ -136,6 +151,10 @@ public class Game {
                 return gamePlayer;
         }
         return null;
+    }
+
+    private void startCountdown(){
+        new GameCountdownTask(this).runTaskTimer(Main.getInstance(), 0, 20);
     }
 
     public void setGameState(GameState gameState) {
