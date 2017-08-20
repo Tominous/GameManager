@@ -4,14 +4,12 @@ import me.rtn.gamemanager.commands.CommandManager;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
 import me.rtn.gamemanager.game.Game;
-import me.rtn.gamemanager.game.GamePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
