@@ -5,7 +5,6 @@ import me.rtn.gamemanager.game.Game;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 /*
  * GameManager 
  * Created by George at 5:56 PM on 14-Aug-17  
