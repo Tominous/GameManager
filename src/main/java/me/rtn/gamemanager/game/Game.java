@@ -72,7 +72,7 @@ public class Game {
         for(String point : fileConfiguration.getStringList("games." + gameName + ".spawnPoints")){
 
             try {
-                String[] values = fileConfiguration.getString("games." + gameName + ".lobbyPoint").split(",");
+                String[] values = point.split(",");
                 double x = Double.parseDouble(values[0].split(":")[1]);
                 double y = Double.parseDouble(values[1].split(":")[1]);
                 double z = Double.parseDouble(values[2].split(":")[1]);
