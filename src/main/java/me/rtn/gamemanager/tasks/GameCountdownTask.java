@@ -6,7 +6,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-
 /*
  * GameManager 
  * Created by George at 5:33 PM on 14-Aug-17  
@@ -25,6 +24,7 @@ import org.bukkit.scheduler.BukkitRunnable;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 public class GameCountdownTask extends BukkitRunnable {
 
     private int time = 20;
