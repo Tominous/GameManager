@@ -1,6 +1,5 @@
 package me.rtn.gamemanager.game;
 
-import com.sun.xml.internal.messaging.saaj.soap.impl.HeaderImpl;
 import me.rtn.gamemanager.Main;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
@@ -152,6 +151,8 @@ public class Game {
         }
         return null;
     }
+
+
 
     private void startCountdown(){
         new GameCountdownTask(this).runTaskTimer(Main.getInstance(), 0, 20);
