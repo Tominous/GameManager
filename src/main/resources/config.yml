@@ -1,5 +1,5 @@
 max-games: 1
-single-server-mode: true
+single-server-mode: false
 lobby-point:
   x: 0
   y: 64
