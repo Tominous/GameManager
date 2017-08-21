@@ -124,6 +124,14 @@ public class Game {
             subtitleMessage.replace("{PLAYER}", gamePlayer.getPlayer().getName());
         }
 
+        if(titleMessage.contains("{GAME_NAME}")){
+            titleMessage.replace("{GAME_NAME}", getDisplayName());
+        }
+
+        if(subtitleMessage.contains("{GAME_NAME}")){
+            subtitleMessage.replace("{GAME_NAME}", getDisplayName());
+        }
+
         if(isState(GameState.LOBBY) || isState(GameState.STARTING)){
             if(getPlayers().size() == getMaxPlayers()){
                 gamePlayer.sendMessage(ChatColor.RED + "Game is full!");

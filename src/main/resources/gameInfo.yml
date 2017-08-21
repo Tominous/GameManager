@@ -5,6 +5,7 @@ games:
     minPlayers: 1
     title: hello
     subtitle: hello {PLAYER}
+    #use {PLAYER} to get the players name use {GAME_NAME} to get the game name.
     worldName: "world"
     lobbyPoint: "X:400, Y:65, Z:187"
     spawnPoints:
