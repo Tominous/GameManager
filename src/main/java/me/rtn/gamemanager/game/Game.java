@@ -48,7 +48,7 @@ public class Game {
     private boolean movementFrozen = false;
 
     public Game(String gameName){
-        FileConfiguration fileConfiguration = DataHandler.getDataHandler().getFileConfiguration();
+        FileConfiguration fileConfiguration = DataHandler.getDataHandler().getGameInfo();
 
         this.displayName = fileConfiguration.getString("games." + gameName + ".displayName");
         this.maxPlayers = fileConfiguration.getInt("games." + gameName + ".maxPlayers");
@@ -113,8 +113,8 @@ public class Game {
 
     public boolean joinGame(GamePlayer gamePlayer){
 
-        String titleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("title:");
-        String subtitleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("subtitle:");
+        String titleMessage = DataHandler.getDataHandler().getGameInfo().getString("title:");
+        String subtitleMessage = DataHandler.getDataHandler().getGameInfo().getString("subtitle:");
 
         if(titleMessage.contains("{PLAYER}")){
             titleMessage.replace("{PLAYER}", gamePlayer.getPlayer().getName());
@@ -143,11 +143,11 @@ public class Game {
                     "&b" + gamePlayer.getPlayer().getName() + " &b has joined!"
             + "&4" + getPlayers().size() + "/" + getMaxPlayers()));
 
-            if(!DataHandler.getDataHandler().getFileConfiguration().getString("title").equalsIgnoreCase(" ")){
+            if(!DataHandler.getDataHandler().getGameInfo().getString("title").equalsIgnoreCase(" ")){
                 TitleSender.sendTitle(gamePlayer.getPlayer(), ChatColor.translateAlternateColorCodes('&', titleMessage));
             }
 
-            if(!DataHandler.getDataHandler().getFileConfiguration().getString("subtitle").equalsIgnoreCase(" ")){
+            if(!DataHandler.getDataHandler().getGameInfo().getString("subtitle").equalsIgnoreCase(" ")){
                 TitleSender.sendSubTitle(gamePlayer.getPlayer(), ChatColor.translateAlternateColorCodes('&', subtitleMessage));
             }
 
