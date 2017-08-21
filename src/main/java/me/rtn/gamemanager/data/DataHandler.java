@@ -29,7 +29,7 @@ public class DataHandler {
 
     private static DataHandler instance = new DataHandler();
 
-    public static DataHandler getInstance() {
+    public static DataHandler getDataHandler() {
         return instance;
     }
 
@@ -51,6 +51,10 @@ public class DataHandler {
 
     public File getGameInfoFile() {
         return gameInfoFile;
+    }
+
+    public FileConfiguration getGameInfo() {
+        return gameInfo;
     }
 
     public void saveGameInfo(){

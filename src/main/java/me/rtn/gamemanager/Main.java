@@ -48,8 +48,8 @@ public final class Main extends JavaPlugin {
             gamesLimit = getConfig().getInt("max-games");
         }
 
-        if(DataHandler.getDataHandler().getFileConfiguration().getConfigurationSection("games") == null) {
-            for (String gameName : DataHandler.getDataHandler().getFileConfiguration().getConfigurationSection("games").getKeys(false)) {
+        if(DataHandler.getDataHandler().getGameInfo().getConfigurationSection("games") != null) {
+            for (String gameName : DataHandler.getDataHandler().getGameInfo().getConfigurationSection("games").getKeys(false)) {
                 Game game = new Game(gameName);
                 boolean status = this.registerGame(game);
                 if(!status){
