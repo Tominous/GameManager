@@ -4,6 +4,7 @@ import me.rtn.gamemanager.Main;
 import me.rtn.gamemanager.data.DataHandler;
 import me.rtn.gamemanager.data.RollbackHandler;
 import me.rtn.gamemanager.tasks.GameCountdownTask;
+import me.rtn.gamemanager.util.TitleSender;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -111,6 +112,10 @@ public class Game {
     }
 
     public boolean joinGame(GamePlayer gamePlayer){
+
+        String titleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("title:");
+        String subtitleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("subtitle:");
+
         if(isState(GameState.LOBBY) || isState(GameState.STARTING)){
             if(getPlayers().size() == getMaxPlayers()){
                 gamePlayer.sendMessage(ChatColor.RED + "Game is full!");
@@ -121,6 +126,14 @@ public class Game {
             gamePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&',
                     "&b" + gamePlayer.getPlayer().getName() + " &b has joined!"
             + "&4" + getPlayers().size() + "/" + getMaxPlayers()));
+
+            if(!DataHandler.getDataHandler().getFileConfiguration().getString("title").equalsIgnoreCase(" ")){
+                TitleSender.sendTitle(gamePlayer.getPlayer(), ChatColor.translateAlternateColorCodes('&', titleMessage));
+            }
+
+            if(!DataHandler.getDataHandler().getFileConfiguration().getString("subtitle").equalsIgnoreCase(" ")){
+                TitleSender.sendSubTitle(gamePlayer.getPlayer(), ChatColor.translateAlternateColorCodes('&', subtitleMessage));
+            }
 
             gamePlayer.getPlayer().getInventory().clear();
             gamePlayer.getPlayer().getInventory().setArmorContents(null);
