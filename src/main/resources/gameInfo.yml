@@ -3,6 +3,8 @@ games:
     displayName: "Example"
     maxPlayers: 2
     minPlayers: 1
+    title: hello
+    subtitle: hello {PLAYER}
     worldName: "world"
     lobbyPoint: "X:400, Y:65, Z:187"
     spawnPoints:
