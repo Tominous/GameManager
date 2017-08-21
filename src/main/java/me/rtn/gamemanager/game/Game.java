@@ -116,6 +116,14 @@ public class Game {
         String titleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("title:");
         String subtitleMessage = DataHandler.getDataHandler().getFileConfiguration().getString("subtitle:");
 
+        if(titleMessage.contains("{PLAYER}")){
+            titleMessage.replace("{PLAYER}", gamePlayer.getPlayer().getName());
+        }
+
+        if(subtitleMessage.contains("{PLAYER}")){
+            subtitleMessage.replace("{PLAYER}", gamePlayer.getPlayer().getName());
+        }
+
         if(isState(GameState.LOBBY) || isState(GameState.STARTING)){
             if(getPlayers().size() == getMaxPlayers()){
                 gamePlayer.sendMessage(ChatColor.RED + "Game is full!");
