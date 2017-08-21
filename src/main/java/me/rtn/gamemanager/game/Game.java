@@ -92,7 +92,7 @@ public class Game {
         player.setGameMode(GameMode.SPECTATOR);
 
         if(gamePlayer != null){
-            //todo switch to spectator
+            setSpectatorSettings(gamePlayer.getPlayer());
         }
     }
 
