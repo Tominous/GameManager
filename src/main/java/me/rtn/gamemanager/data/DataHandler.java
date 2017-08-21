@@ -2,6 +2,7 @@ package me.rtn.gamemanager.data;
 
 import me.rtn.gamemanager.Main;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,37 +27,37 @@ import java.io.IOException;
  */
 public class DataHandler {
 
-    private File gameInfoFile;
-    private FileConfiguration fileConfiguration;
-    public FileConfiguration getFileConfiguration() { return fileConfiguration; }
+    private static DataHandler instance = new DataHandler();
 
-    private static DataHandler dataHandler = new DataHandler();
-
-    public static DataHandler getDataHandler(){
-        return dataHandler;
+    public static DataHandler getInstance() {
+        return instance;
     }
+
     public DataHandler(){
-        dataHandler = this;
         this.gameInfoFile = new File(Main.getInstance().getDataFolder(), "gameInfo.yml");
         if(!this.gameInfoFile.exists()){
             try{
+                this.gameInfoFile.getParentFile().mkdirs();
                 this.gameInfoFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        this.gameInfo = YamlConfiguration.loadConfiguration(this.gameInfoFile);
     }
 
-    public void saveGameInfoFile(){
-        dataHandler = this;
-        try{
-            this.fileConfiguration.save(this.gameInfoFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private File gameInfoFile;
+    private FileConfiguration gameInfo;
 
     public File getGameInfoFile() {
         return gameInfoFile;
+    }
+
+    public void saveGameInfo(){
+        try{
+            this.gameInfo.save(this.gameInfoFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
