@@ -40,7 +40,7 @@ public class CommandManager implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(args.length == 0){
-            sender.sendMessage(ChatColor.RED + "Invalid command!");
+            sender.sendMessage(ChatColor.RED + "Invalid command! Try /games join or /games list");
         } else {
             String arguement = args[0];
             List<String> newArgs = new ArrayList<>();
