@@ -42,6 +42,8 @@ public class DataHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            saveGameInfo();
         }
         this.gameInfo = YamlConfiguration.loadConfiguration(this.gameInfoFile);
     }
@@ -53,7 +55,7 @@ public class DataHandler {
         return gameInfo;
     }
 
-    public void saveGameInfo(){
+    private void saveGameInfo(){
         try{
             this.gameInfo.save(this.gameInfoFile);
         } catch (IOException e) {
