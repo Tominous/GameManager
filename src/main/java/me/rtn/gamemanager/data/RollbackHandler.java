@@ -34,7 +34,7 @@ public class RollbackHandler {
     }
     public void rollback(World world){
         for(Player player : world.getPlayers()){
-            //still todo
+            player.teleport(Main.getInstance().getLobbyPoint());
         }
         Main.getInstance().getServer().unloadWorld(world, false);
         String originalName = world.getName().split("_")[0];
