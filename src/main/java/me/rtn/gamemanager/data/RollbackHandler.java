@@ -1,6 +1,7 @@
 package me.rtn.gamemanager.data;
 
 import me.rtn.gamemanager.Main;
+import me.rtn.gamemanager.game.Game;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -33,7 +34,7 @@ public class RollbackHandler {
     }
     public void rollback(World world){
         for(Player player : world.getPlayers()){
-            //todo lobby point
+            //still todo
         }
         Main.getInstance().getServer().unloadWorld(world, false);
         String originalName = world.getName().split("_")[0];
