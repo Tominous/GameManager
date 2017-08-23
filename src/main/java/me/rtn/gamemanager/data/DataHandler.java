@@ -49,10 +49,6 @@ public class DataHandler {
     private File gameInfoFile;
     private FileConfiguration gameInfo;
 
-    public File getGameInfoFile() {
-        return gameInfoFile;
-    }
-
     public FileConfiguration getGameInfo() {
         return gameInfo;
     }
